@@ -10,26 +10,26 @@
 
 void Process(std::string check, char* args[])
 {
-	int status;
-	pid_t pid = fork();
-	if (pid < 0) { /* error occurred */
-		fprintf(stderr, "Fork Failed");
-		//return 1;
-	}
-	else if (pid == 0) { /* child process */
+	pid_t  pid;
+	int    status;
 
-		execvp(args[0], args);
-		exit(EXIT_FAILURE);  //if the child process fails, exit the child process.
+	if ((pid = fork()) < 0) {     /* fork a child process           */
+		printf("*** ERROR: forking child process failed\n");
+		exit(1);
 	}
-	else if (check != "&") {/* parent will wait for the child to complete */
+	else if (pid == 0) {          /* for the child process:         */
+		printf("child>");
+		if (execvp(args[0], args) < 0) {     /* execute the command  */
+			printf("*** ERROR: exec failed\n");
+			exit(1);
+		}
 
-		waitpid(pid, &status, WUNTRACED | WCONTINUED);
+	}
+	else {                                  /* for the parent:      */
+		while (wait(&status) != pid)       /* wait for completion  */
+			;
+	}
 
-	}
-	else
-	{
-		return;
-	}
 }
 
 int main(void)
