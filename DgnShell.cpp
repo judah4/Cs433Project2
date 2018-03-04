@@ -37,8 +37,8 @@ void DgnShell::SendArgs(std::string check, char * args[]) { ///get a command fro
 	else if (check[0] == '!'&&check[1] != '!'&&check.length() != 1 && exitStatus == false && check != "exit")     ///checks for !# expressions
 	{
 
-		this->histArg(check, args); ///defined below
-									// return;
+		this->histArg(check, args);
+									
 		return;
 	}
 
@@ -59,7 +59,6 @@ void DgnShell::SendArgs(std::string check, char * args[]) { ///get a command fro
 	else if (check == "cd"&&exitStatus == false && check != "exit") { /// home directory chdir handling
 		m_history.push_back(check);
 		histIndex++;
-		//  std::cout<<"HOMEDIR CHECK"<<std::endl;
 		std::string myText(homedir);
 		std::istringstream iss(myText);
 		std::string token;
@@ -210,7 +209,7 @@ void DgnShell::SendArgs(std::string check, char * args[]) { ///get a command fro
 				fprintf(stderr, "Fork Failed");
 				//return 1;
 			}
-			else if (pid == 0) { /* child process */
+			else if (m_pid == 0) { /* child process */
 
 				execvp(args[0], args);
 				exit(EXIT_FAILURE);  //if the child process fails, exit the child process.
@@ -377,7 +376,7 @@ void DgnShell::histArg(std::string check, char * args[]) {//handle user m_histor
 				fprintf(stderr, "Fork Failed");
 				//return 1;
 			}
-			else if (pid == 0) { /* child process */
+			else if (m_pid == 0) { /* child process */
 
 				execvp(args[0], args);
 				exit(EXIT_FAILURE);
@@ -488,7 +487,7 @@ void DgnShell::regularCheck(std::string check, char * args[]) {  ///checks for n
 				fprintf(stderr, "Fork Failed");
 				//return 1;
 			}
-			else if (pid == 0) { /* child process */
+			else if (m_pid == 0) { /* child process */
 
 				execvp(args[0], args);
 				perror("");

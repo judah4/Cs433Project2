@@ -7,8 +7,7 @@ CFLAGS = -std=c++11 -g -Wall		# compilation flags: -g for debugging. Change to -
 LIB = -lm			# linked libraries	
 LDFLAGS = -L.			# link flags
 PROG = project2			# target executable (output)
-HDRS = DgnShell.h
-SRC = DgnShell.cpp DgnCmd.cpp      # .c or .cpp source files.
+SRC = DgnCmd.cpp      # .c or .cpp source files.
 OBJ = $(SRC:.cpp=.o) 	# object files for the target. Add more to this and next lines if there are more than one source files.
 
 all : $(PROG)
