@@ -1,5 +1,5 @@
 ###################################
-# OS COURSE - 2006
+# OS COURSE - 2018
 # 
 ###################################
 CC = g++ 	# use g++ for compiling c++ code or gcc for c code
