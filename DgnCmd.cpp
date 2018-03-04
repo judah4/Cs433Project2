@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <iostream>
 #include <string>
+#include <sys/wait.h>
 
 #define MAXLINE 80 /* The maximum length command */
 
@@ -52,8 +53,6 @@ int main(void)
 			shouldrun = false;
 			continue;
 		}
-
-
 
 	}
 	return 0;
