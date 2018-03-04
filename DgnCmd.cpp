@@ -8,7 +8,7 @@
 #define MAXLINE 80 /* The maximum length command */
 
 
-void Process(std::string check, char * args[])
+void Process(std::string check, char* args[])
 {
 	pid_t pid = fork();
 	if (pid < 0) { /* error occurred */
@@ -33,7 +33,7 @@ void Process(std::string check, char * args[])
 
 int main(void)
 {
-	char *args[MAXLINE / 2 + 1]; /* command line arguments */
+	char* args[MAXLINE / 2 + 1]; /* command line arguments */
 	bool shouldrun = true; /* flag to determine when to exit program */
 
 	while (shouldrun) {
@@ -53,6 +53,8 @@ int main(void)
 			shouldrun = false;
 			continue;
 		}
+
+		Process(check, args);
 
 	}
 	return 0;
