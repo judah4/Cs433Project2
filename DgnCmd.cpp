@@ -12,7 +12,7 @@ void Process(std::string check, char* args[])
 {
 	pid_t  pid;
 	int    status;
-
+	printf("processing...");
 	if ((pid = fork()) < 0) {     /* fork a child process           */
 		printf("*** ERROR: forking child process failed\n");
 		exit(1);
