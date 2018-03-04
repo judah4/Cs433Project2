@@ -10,6 +10,7 @@
 
 void Process(std::string check, char* args[])
 {
+	int status;
 	pid_t pid = fork();
 	if (pid < 0) { /* error occurred */
 		fprintf(stderr, "Fork Failed");
@@ -22,7 +23,7 @@ void Process(std::string check, char* args[])
 	}
 	else if (check != "&") {/* parent will wait for the child to complete */
 
-		wait(NULL);
+		waitpid(pid, &status, WUNTRACED | WCONTINUED);
 
 	}
 	else

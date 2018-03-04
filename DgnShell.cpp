@@ -203,7 +203,7 @@ void DgnShell::SendArgs(std::string check, char * args[]) { ///get a command fro
 			}
 
 
-
+			int status;
 			m_pid = fork();
 			if (m_pid < 0) { /* error occurred */
 				fprintf(stderr, "Fork Failed");
