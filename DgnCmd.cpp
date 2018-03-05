@@ -81,6 +81,10 @@ int main(void)
 		bool addHistory = true;
 		if (check == "!!")
 		{
+			if(check.empty())
+			{
+				continue;
+			}
 			check = history[0];
 			history.pop_back();
 			addHistory = false;
