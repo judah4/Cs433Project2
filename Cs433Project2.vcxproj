@@ -116,10 +116,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DgnCmd.cpp" />
-    <ClCompile Include="DgnShell.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="DgnShell.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

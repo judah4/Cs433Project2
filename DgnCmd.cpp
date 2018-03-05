@@ -89,10 +89,11 @@ int main(void)
 		{
 			char numChar = check[1];
 			int num = numChar - '0';
-			check = history[num];
+			
 			if (num < history.size()) {
-				history.erase(history.begin() + num);
-				addHistory = false;
+				check = history[num];
+				//history.erase(history.begin() + num);
+				//addHistory = false;
 			}
 		}
 		
