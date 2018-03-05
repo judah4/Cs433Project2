@@ -13,13 +13,11 @@ void Process(std::string check, char* args[])
 {
 	pid_t  pid;
 	int    status;
-	printf("processing...");
 	if ((pid = fork()) < 0) {     /* fork a child process           */
 		printf("*** ERROR: forking child process failed\n");
 		exit(1);
 	}
 	else if (pid == 0) {          /* for the child process:         */
-		printf("child>");
 		if (execvp(args[0], args) < 0) {     /* execute the command  */
 			printf("*** ERROR: exec failed\n");
 			exit(1);
@@ -79,13 +77,25 @@ int main(void)
 			continue;
 		}
 
+		bool addHistory = true;
 		if (check == "!!")
 		{
 			check = history[0];
 			history.pop_back();
-			continue;
+			addHistory = false;
 		}
-		else
+		if (check.size() > 1 && check[0] == '!')
+		{
+			char numChar = check[1];
+			int num = numChar - '0';
+			check = history[num];
+			if (num < history.size()) {
+				history.erase(history.begin() + num);
+				addHistory = false;
+			}
+		}
+		
+		if(addHistory == true)
 		{
 			history.push_back(check);
 		}
