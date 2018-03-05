@@ -68,10 +68,34 @@ int main(void)
 			shouldrun = false;
 			continue;
 		}
+
+		if(check == "history")
+		{
+			for(std::vector<std::string>::iterator it = history.begin(); it != history.end(); ++it)
+			{
+				printf(it->c_str());
+				printf("\n");
+			}
+			continue;
+		}
+
+		if (check == "!!")
+		{
+			check = history[0];
+			history.pop_back();
+			continue;
+		}
+		else
+		{
+			history.push_back(check);
+		}
+
 		char * checkArgs = strdup(check.c_str());
 		parse(checkArgs, args);
 
+		
 		Process(check, args);
+
 
 	}
 	return 0;
