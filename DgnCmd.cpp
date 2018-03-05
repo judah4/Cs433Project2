@@ -85,7 +85,7 @@ int main(void)
 			history.pop_back();
 			addHistory = false;
 		}
-		if (check.size() > 1 && check[0] == '!')
+		else if (check.size() > 1 && check[0] == '!')
 		{
 			char numChar = check[1];
 			int num = numChar - '0';
